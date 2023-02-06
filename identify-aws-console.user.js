@@ -6,6 +6,12 @@
 // @match        https://console.aws.amazon.com/*
 // @match        https://*.console.aws.amazon.com/*
 // @grant        none
+// @homepage     https://github.com/mdenburger/userscript-identify-aws-console
+// @icon         https://raw.githubusercontent.com/mdenburger/userscript-identify-aws-console/main/images/aws-id-48.png
+// @icon64       https://raw.githubusercontent.com/mdenburger/userscript-identify-aws-console/main/images/aws-id-64.png
+// @updateURL    https://github.com/mdenburger/userscript-identify-aws-console/raw/main/identify-aws-console.user.js
+// @downloadURL  https://github.com/mdenburger/userscript-identify-aws-console/raw/main/identify-aws-console.user.js
+// @supportURL   https://github.com/mdenburger/userscript-identify-aws-console/issues
 // ==/UserScript==
 
 (function () {
