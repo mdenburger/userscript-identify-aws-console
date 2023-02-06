@@ -3,6 +3,7 @@
 // @description  Easily identify the AWS account by showing the account name and coloring the menu bar
 // @author       Mathijs den Burger
 // @version      0.2.0
+// @license      MIT
 // @match        https://console.aws.amazon.com/*
 // @match        https://*.console.aws.amazon.com/*
 // @grant        none
