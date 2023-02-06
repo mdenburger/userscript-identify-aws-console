@@ -8,7 +8,9 @@ color the menu bar green or red when the account name contains "dev" or "prod", 
 
 ## Screenshots
 
-TODO
+!["Green menu bar for development account"](/images/screenshot-development.png)
+
+!["Red menu bar for production account"](/images/screenshot-production.png)
 
 ## Customization
 
