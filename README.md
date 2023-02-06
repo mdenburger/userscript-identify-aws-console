@@ -1,6 +1,7 @@
 # Identify AWS Console Userscript
 
 Userscript for the AWS Console to identify the current AWS account more easily.
+Supports individual accounts as well as AWS access portal.
 
 The script shows the _name of the current account_ in the "search" input field in the menu bar.
 It also changes the _color of the menu bar_ based on rules in the script. The default rules 

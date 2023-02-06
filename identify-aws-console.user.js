@@ -2,7 +2,7 @@
 // @name         Identify AWS Console
 // @description  Easily identify the AWS account by showing the account name and coloring the menu bar
 // @author       Mathijs den Burger
-// @version      0.1.0
+// @version      0.2.0
 // @match        https://console.aws.amazon.com/*
 // @match        https://*.console.aws.amazon.com/*
 // @grant        none
@@ -78,13 +78,17 @@
   }
 
   function parseAccount(userInfo) {
-    let extractName = new RegExp("awsapps\.com\/start\/#\/saml\/custom\/[0-9]+%20%28(.*)%29\/");
-    let extractedName = extractName.exec(userInfo.iss)[1];
-
+    let extractedName = getSamlAccountName(userInfo.iss) || userInfo.username;
     let name = decodeURIComponent(extractedName);
     let color = getMenuBarColor(name);
 
     return {name, color};
+  }
+
+  function getSamlAccountName(userInfo) {
+    let regExp = new RegExp("awsapps\.com\/start\/#\/saml\/custom\/[0-9]+%20%28(.*)%29\/");
+    let match = regExp.exec(userInfo.iss);
+    return match ? match[1] : null;
   }
 
   function getMenuBarColor(accountName) {
