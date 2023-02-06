@@ -12,6 +12,12 @@ color the menu bar green or red when the account name contains "dev" or "prod", 
 
 !["Red menu bar for production account"](/images/screenshot-production.png)
 
+## Installation
+
+1. Install the browser plugin [Tampermonkey](https://www.tampermonkey.net/)
+2. [Open the script](https://github.com/mdenburger/userscript-identify-aws-console/raw/main/identify-aws-console.user.js)
+3. Click "Install"
+
 ## Customization
 
 The rules in the `ACCOUNT_NAME_COLOR_RULES` array map AWS account names to menu bar colors. 
