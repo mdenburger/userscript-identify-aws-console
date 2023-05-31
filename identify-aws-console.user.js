@@ -47,8 +47,29 @@
 
   // main logic
   const account = getAccount();
-  setMenuBarColor(account.color);
-  setSearchPlaceholder(account.name);
+
+  // Select the a parent of the targetted nav element dynamically added
+  var targetNode = document.getElementById('consoleNavHeader');
+
+  // Create a new MutationObserver
+  var observer = new MutationObserver(function(mutationsList) {
+    for (var mutation of mutationsList) {
+        if (mutation.type === 'childList') {
+            // Check if the nav is now present
+            if (targetNode.querySelectorAll('nav').length > 0) {
+                // update header nav color
+                setMenuBarColor(account.color);
+                // update search input placeholder text
+                setSearchPlaceholder(account.name);
+                break; // Exit the loop once the elements are found
+            }
+        }
+    }
+  });
+
+  // Start observing the targetNode and its childList mutations
+  observer.observe(targetNode, { childList: true, subtree: true });
+
 
   // helper functions
 
