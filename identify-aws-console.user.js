@@ -2,11 +2,12 @@
 // @name         Identify AWS Console
 // @description  Easily identify the AWS account by showing the account name and coloring the menu bar
 // @author       Mathijs den Burger
-// @version      0.2.0
+// @version      0.2.1
 // @license      MIT
 // @match        https://console.aws.amazon.com/*
 // @match        https://*.console.aws.amazon.com/*
 // @grant        none
+// @run-at       document-body
 // @homepage     https://github.com/mdenburger/userscript-identify-aws-console
 // @namespace    https://github.com/mdenburger/userscript-identify-aws-console
 // @icon         https://raw.githubusercontent.com/mdenburger/userscript-identify-aws-console/main/images/aws-id-48.png
@@ -99,16 +100,36 @@
   }
 
   function setMenuBarColor(color) {
-    let menuBarElems = document.querySelectorAll('header nav');
-    for (let i = 0; i < menuBarElems.length; i++) {
-      menuBarElems[i].style.backgroundColor = color;
-    }
+    waitForElement('header nav').then(menuBarElement => {
+      menuBarElement.style.backgroundColor = color;
+    });
   }
 
   function setSearchPlaceholder(text) {
-    let search = document.getElementById('awsc-concierge-input')
-    if (search) {
-      search.placeholder = text;
-    }
+    waitForElement('#awsc-concierge-input').then(searchElement => {
+      searchElement.placeholder = text;
+    });
+  }
+
+  function waitForElement(selector) {
+    return new Promise(resolve => {
+      const element = document.querySelector(selector);
+      if (element) {
+        return resolve(element);
+      }
+
+      const observer = new MutationObserver(mutations => {
+        const element = document.querySelector(selector);
+        if (element) {
+          resolve(element);
+          observer.disconnect();
+        }
+      });
+
+      observer.observe(document.body, {
+        childList: true,
+        subtree: true
+      });
+    });
   }
 })();
